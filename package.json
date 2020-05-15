@@ -1,0 +1,25 @@
+{
+  "name": "weibobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JohnC",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "puppeteer-core": "^3.0.1",
+    "querystring": "^0.2.0",
+    "readline": "^1.3.0",
+    "rita": "^1.3.94"
+  },
+  "devDependencies": {
+    "weibo-post": "^1.0.1"
+  }
+}
