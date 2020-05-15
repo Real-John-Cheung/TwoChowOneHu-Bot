@@ -1,4 +1,4 @@
-let puppeteer = require('puppeteer-core');
+let puppeteer = require('puppeteer');
 let fs = require('fs');
 let qs = require('querystring');
 if (process.env.NAME == undefined) {
@@ -12,8 +12,7 @@ let nameList = ['huxijin','rmrb','1846816274','banyuetanwang','gmwview','breakin
 //            https://iter01.com/15991.html
 const getDataByNickname = async function(nickname) {
   const browser = await puppeteer.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const pageForWeibo = await browser.newPage();
   await pageForWeibo.setViewport({
