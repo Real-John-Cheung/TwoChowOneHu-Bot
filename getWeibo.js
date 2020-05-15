@@ -6,7 +6,7 @@ if (process.env.NAME == undefined) {
 }
 
 let nameList = ['huxijin','rmrb','1846816274','banyuetanwang','gmwview','breakingnews','newoutlook','huanqiushibaoguanwei','globaltimes','thepapernewsapp',
-'6049590367','5521056657','xiena','hejiong','yangmiblog','3310679915','cangtoushi','822998189'];
+'6049590367','5521056657','xiena','hejiong','yangmiblog','3310679915','cangtoushi','822998189','phoenixnewmedia','6111313824','fhzk','suvern','tszyuen','1002224393','6616523296'];
 
 //reference : https://gist.github.com/larry1001/5a23678482b4a868981ce5c9f6cd64a5
 //            https://iter01.com/15991.html
@@ -142,6 +142,7 @@ async function getWeibo(pageIn) {
           "minfo": weiboDiv.attr("minfo"),
           "omid": weiboDiv.attr("omid"),
           "text": weiboDiv.find(".WB_detail>.WB_text").text().trim(),
+          "full_text":weiboDiv.find("div[node-type=feed_list_full_content]").text().trim(),
           'link': webUrl.concat(weiboDiv.find(".WB_detail>.WB_from a").eq(0).attr("href")),
           "sendAt": weiboDiv.find(".WB_detail>.WB_from a").eq(0).attr("date")
         };
@@ -233,12 +234,13 @@ async function getWeiboWithNameList(){
   let startIndexString = fs.readFileSync('startIndex.txt','utf-8');
   let startIndex = parseInt(startIndexString,10);
   let nextStartIndex;
-  if (startIndex+5>=nameList.length){
+  let n=2
+  if (startIndex+n>=nameList.length){
     nextStartIndex = 0;
   } else {
-    nextStartIndex=startIndex+5;
+    nextStartIndex=startIndex+n;
   }
-  for (let i = startIndex;i<Math.min(startIndex+5,nameList.length);i++){
+  for (let i = startIndex;i<Math.min(startIndex+n,nameList.length);i++){
     getDataByNickname(nameList[i]);
   }
   fs.writeFileSync('startIndex.txt',nextStartIndex);
