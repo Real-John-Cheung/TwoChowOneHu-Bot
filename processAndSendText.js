@@ -156,6 +156,8 @@ startTokens:
 
 async function post(){
   generateTextFromWeibo();
+  let weibos =null;
+  let weiboFiles=null;
   setTimeout(generateTextFromLit,60000);
 
 
