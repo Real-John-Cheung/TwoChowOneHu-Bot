@@ -4,6 +4,7 @@
   "description": "",
   "main": "processAndSendText.js",
   "scripts": {
+    "start": "node processAndSendText.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "JohnC",
