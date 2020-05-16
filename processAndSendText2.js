@@ -8,18 +8,29 @@ if (process.env.COOKIE == undefined) {
   require('./env.js');
 }
 
+let litDir = './lit';
+let litFiles = fs.readdirSync(litDir);
+
 let cookie = process.env.COOKIE;
 
 //text fed: essays by 周樹人 & 周作人
 async function generateTextFromLit() {
-
-  let rm = new rita.RiMarkov(n,{ disableInputChecks: true });
-  console.log('loading lit file ');
-  let pathTofile = './lit/lit.json';
-  let content = fs.readFileSync(pathTofile);
-  content = JSON.parse(content);
-  let litString = content.lit.replace(/[0-9]+/g, '');
-
+  let lits = []
+  let rm = new rita.RiMarkov(n, {
+    disableInputChecks: true
+  });
+  //console.log('loading lit file ');
+  for (let i = 0; i < litFiles.length; i++) {
+    console.log('loading file ' + (i + 1));
+    let fileName = litFiles[i];
+    console.log(fileName);
+    let pathTofile = './lit/' + fileName;
+    let content = fs.readFileSync(pathTofile);
+    content = JSON.parse(content);
+    let text = content.lit.replace(/[0-9]+/g, '');
+    lits.push(text);
+  }
+  let litString = lits.join('');
   let regexp = /[a-z|A-Z|一-龥|\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/g;
   let processedLitArray = litString.match(regexp);
   console.log(processedLitArray.join(''));
@@ -38,7 +49,7 @@ async function generateTextFromLit() {
 
   console.log(resultString);
   weiboPost.setCookie(cookie);
-  //weiboPost.post(resultString);
+  weiboPost.post(resultString);
 }
 
 generateTextFromLit();
