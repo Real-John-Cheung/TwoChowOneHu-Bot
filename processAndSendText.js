@@ -62,12 +62,11 @@ async function generateTextFromWeibo() {
   let weibosString = weibos.join('。');
   let regexp = /[0-9|a-z|A-Z|一-龥|\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/g;
   let processedWeibosStringArray = weibosString.match(regexp);
-
+  console.log(processedWeibosStringArray.join(''));
   await rm.loadTokens(processedWeibosStringArray);
-  console.log(rm);
-  let result = await rm.generateUntil(/[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/,143,280);
+  let result = await rm.generateUntil(/[\uff0c|\u3002|\uff1f|\uff01|\u2026]/,143,280);
   let resultString = result.join('');
-  resultString = resultString.replace(/[0-9|a-z|A-Z|一-龥|\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]+[uff0c|u3002|uff1f|uff01|u2026]/,'');
+  resultString = resultString.replace(/[a-z|A-Z|一-龥|]+[\uff0c|\u3002|\uff1f|\uff01|\u2026]/,'');
   let lastCharacter = resultString[resultString.length-1];
   console.log(lastCharacter);
   if (lastCharacter === '，'){

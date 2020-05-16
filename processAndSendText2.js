@@ -38,7 +38,7 @@ async function generateTextFromLit() {
 
   console.log(resultString);
   weiboPost.setCookie(cookie);
-  weiboPost.post(resultString);
+  //weiboPost.post(resultString);
 }
 
 generateTextFromLit();
