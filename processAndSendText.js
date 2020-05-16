@@ -39,7 +39,7 @@ async function generateTextFromWeibo() {
       t=t.replace('】','');
       t=t.replace('公示链接：O微博抽奖平台对本次抽奖进行监督，结果公正有效','');
       t=t.replace('光明网评论员','');
-      t=t.replace('网页链接'','');
+      t=t.replace('网页链接','');
       t=t.replace(/L[一-龥]+/,'');
       text.push(t);
       if (content[j].forward){
@@ -51,7 +51,7 @@ async function generateTextFromWeibo() {
         t2=t2.replace('】','');
         t2=t2.replace('公示链接：O微博抽奖平台对本次抽奖进行监督，结果公正有效','');
         t2=t2.replace('光明网评论员','');
-        t2=t2.replace('网页链接'','');
+        t2=t2.replace('网页链接','');
         t2=t2.replace(/L[一-龥]+/,'');
         text.push(t2);
       }
