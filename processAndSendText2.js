@@ -13,7 +13,7 @@ let cookie = process.env.COOKIE;
 //text fed: essays by 周樹人 & 周作人
 async function generateTextFromLit() {
 
-  let rm = new rita.RiMarkov(n);
+  let rm = new rita.RiMarkov(n,{ disableInputChecks: true });
   console.log('loading lit file ');
   let pathTofile = './lit/lit.json';
   let content = fs.readFileSync(pathTofile);
@@ -37,8 +37,8 @@ async function generateTextFromLit() {
   }
 
   console.log(resultString);
-  //weiboPost.setCookie(cookie);
-  //weiboPost.post(resultString);
+  weiboPost.setCookie(cookie);
+  weiboPost.post(resultString);
 }
 
 generateTextFromLit();
