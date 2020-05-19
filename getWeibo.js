@@ -48,6 +48,7 @@ const getDataByNickname = async function(nickname) {
   console.log('tag added');
   await scrollToBottom(pageForWeibo);
   console.log('scrolled');
+  await clickOnFulltext(pageForWeibo);
   let result = await getWeibo(pageForWeibo);
   result.comments = await getComment(pageForWeibo);
 
@@ -122,6 +123,13 @@ const getWeiboBySearch = async function(keywords) {
 
   }
   await browser.close();
+}
+
+async function clickOnFulltext(pageIn) {
+  let toClick = await pageIn.$$('#Pl_Official_MyProfileFeed__22 > div > div:nth-child(4) > div.WB_feed_detail.clearfix > div.WB_detail > div.WB_text.W_f14 > a');
+  toClick.forEach(async element => {
+    await element.click();
+  });
 }
 
 async function getWeibo(pageIn) {
